@@ -1,9 +1,11 @@
    var express = require('express')
    const sequelize = require('./config/db')
    const routes = require('./routes')
+   const auth = require('./config/auth')
 
-   var app = express()
+   const app = express()
    app.use(express.json())
+   app.use(auth.optional)
    app.use('/',routes)
 
    try{

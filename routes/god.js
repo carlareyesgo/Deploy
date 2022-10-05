@@ -9,10 +9,10 @@ const {
 
 const auth = require('../config/auth')
 
-router.get('/', auth.require, getGods)
+router.get('/', getGods)
 router.get('/:id',getGod)
-router.post('/',createGod)
-router.patch('/:id',updateGod)
-router.delete('/:id',deleteGod)
+router.post('/', auth.required, createGod)
+router.patch('/:id', auth.required, updateGod)
+router.delete('/:id', auth.isAdmin, deleteGod)
 
 module.exports = router
